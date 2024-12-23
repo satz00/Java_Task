@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Default Values</title>
+</head>
+<body>
+
+    <h1>Form with Default Values</h1>
+
+    <form action="#" method="post">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" value="John Doe" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="john.doe@example.com" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" value="password123" required><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male" checked>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br><br>
+
+        <label for="subscribe">Subscribe to Newsletter:</label>
+        <input type="checkbox" id="subscribe" name="subscribe" checked><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" value="1990-01-01"><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" value="30" min="18" max="100"><br><br>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="usa" selected>USA</option>
+            <option value="canada">Canada</option>
+            <option value="uk">UK</option>
+            <option value="australia">Australia</option>
+        </select><br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="50">123 Main St, Cityville, State</textarea><br><br>
+
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" name="file"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
+
+
