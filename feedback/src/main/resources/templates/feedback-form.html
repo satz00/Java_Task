@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+</head>
+<body>
+<h1>Submit Your Feedback</h1>
+
+<form action="/submitFeedback" method="post">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="bookName">Book Name:</label>
+    <input type="text" id="bookName" name="bookName" required><br><br>
+
+    <label for="feedback">Feedback:</label><br>
+    <textarea id="feedback" name="feedback" rows="5" required></textarea><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<p style="color:green;">${message}</p>
+</body>
+</html>
