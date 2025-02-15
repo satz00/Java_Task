@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard - Bus Reservation System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#">Bus Reservation System</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profile/{userId}(userId=${userId})}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-danger text-white" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h2>Welcome, <span th:text="${username}"></span>!</h2>
+
+    <div class="text-center my-3">
+        <a th:href="@{/user/{userId}(userId=${userId})}" class="btn btn-warning">View My Tickets</a>
+    </div>
+
+    <h3 class="text-center">Search for a Bus</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/api/buses/search" method="get">
+                <div class="mb-3">
+                    <label>From:</label>
+                    <input type="text" name="from" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>To:</label>
+                    <input type="text" name="to" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>Date:</label>
+                    <input type="date" name="date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${buses != null and not #lists.isEmpty(buses)}" class="mt-4">
+        <h3 class="text-center">Available Buses</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Bus Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date</th>
+                    <th>Seats Available</th>
+                    <th>Book</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="bus : ${buses}">
+                    <td th:text="${bus.busName} ?: 'N/A'"></td>
+                    <td th:text="${bus.fromLocation} ?: 'N/A'"></td>
+                    <td th:text="${bus.toLocation} ?: 'N/A'"></td>
+                    <td th:text="${bus.date} ?: 'N/A'"></td>
+                    <td th:text="${bus.availableSeats} ?: 'N/A'"></td>
+                    <td>
+                        <a th:href="@{/book(busId=${bus.id}, userId=${userId})}" class="btn btn-success">Book Now</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div th:if="${buses == null or #lists.isEmpty(buses)}" class="no-buses">
+        <h3>No Buses Found</h3>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
